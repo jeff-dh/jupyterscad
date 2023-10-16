@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 """
 import logging
 import platform
+import shutil
 import subprocess
 import tempfile
-import shutil
 from pathlib import Path
 
 from ._visualize import visualize_stl
