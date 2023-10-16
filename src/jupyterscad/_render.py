@@ -18,6 +18,7 @@ import logging
 import platform
 import subprocess
 import tempfile
+import shutil
 from pathlib import Path
 
 from ._visualize import visualize_stl
@@ -110,7 +111,10 @@ class OpenSCAD:
 
     @classmethod
     def _detect_executable(cls) -> Path:
-        detected_executable = None
+        detected_executable = shutil.which("openscad") or shutil.which("OpenSCAD")
+        if detected_executable:
+            return Path(detected_executable)
+
         system = platform.system()
         try:
             default_paths = DEFAULT_OPENSCAD_EXECUTABLE[system]
